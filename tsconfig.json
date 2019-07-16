@@ -1,0 +1,20 @@
+{
+  "compilerOptions":
+  {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "sourceMap": false,
+    "watch": true,
+    "experimentalDecorators": true,
+    "types": ["node"]
+  },
+  "include": [
+    "app/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "db"
+  ]
+}
