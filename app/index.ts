@@ -1,7 +1,10 @@
 if(process.env.NODE_ENV !== 'production')
     require('dotenv').config();
 
+import "reflect-metadata";
 import { spawn } from 'child_process';
+import { ApolloServer } from 'apollo-server-fastify';
+import { buildTypeDefsAndResolvers } from 'type-graphql';
 
 const fs = require('fs');
 const path = require('path');
@@ -9,7 +12,6 @@ const Sequelize = require('sequelize');
 const fastify = require('fastify')({ logger: true, bodyLimit: 52428800 });
 
 fastify.register(require('fastify-sensible'));
-fastify.register(require('fastify-multipart'));
 fastify.register(require('fastify-cors'), {
     origin: '*',
     method: ['GET', 'POST'],
@@ -65,9 +67,14 @@ class HuginServer
 {
     constructor()
     {
+        this.init();
+    }
+
+    async init() {
         this.connectDatabase();
         this.loadModels();
-        this.loadRoutes();
+        //this.loadRoutes();
+        await this.setupApolloServer();
         this.startServer();
     }
     
@@ -128,6 +135,32 @@ class HuginServer
                 console.error(ex);
             }
         }
+    }
+
+    /**
+     * Load routes files from app/routes
+     */
+    private async setupApolloServer()
+    {
+        const { typeDefs, resolvers } = await buildTypeDefsAndResolvers({
+            resolvers: [path.resolve(__dirname, 'resolvers', '**/*.js')],
+            skipCheck: true
+        });
+
+        const apollo = new ApolloServer({
+            typeDefs,
+            resolvers,
+            context: () => {
+                var context: any = {};
+                context.models = fastify.models;
+
+                return context;
+            },
+            playground: true,
+            introspection: true
+        });
+
+        fastify.register(apollo.createHandler());
     }
 
     /**
