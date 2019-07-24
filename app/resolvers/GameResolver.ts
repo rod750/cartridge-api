@@ -8,7 +8,7 @@ import { UpdateGameInput } from "../inputs/UpdateGameInput";
 export class GameResolver {
     @Query(returns => [Game])
     async games(@Ctx() context: Context<any>) {
-        return context.models.Game.findAll({include: { all: true }});
+        return context.models.Game.findAll({include: { all: true }, order: [['id', 'DESC']]});
     }
     
     @Mutation(returns => Game)

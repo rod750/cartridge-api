@@ -8,7 +8,7 @@ import { NewTagInput } from "../inputs/NewTagInput";
 export class TagResolver {
     @Query(returns => [Tag])
     async tags(@Ctx() context: Context<any>) {
-        return context.models.Tag.findAll();
+        return context.models.Tag.findAll({order: [['id', 'DESC']]});
     }
     
     @Mutation(returns => Tag)

@@ -8,7 +8,7 @@ import { UpdateDeveloperInput } from "../inputs/UpdateDeveloperInput";
 export class DeveloperResolver {
     @Query(returns => [Developer])
     async developers(@Ctx() context: Context<any>) {
-        return context.models.Developer.findAll();
+        return context.models.Developer.findAll({order: [['id', 'DESC']]});
     }
     
     @Mutation(returns => Developer)

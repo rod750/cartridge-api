@@ -8,7 +8,7 @@ import { NewPlatformInput } from "../inputs/NewPlatformInput";
 export class PlatformResolver {
     @Query(returns => [Platform])
     async platforms(@Ctx() context: Context<any>) {
-        return context.models.Platform.findAll();
+        return context.models.Platform.findAll({order: [['id', 'DESC']]});
     }
     
     @Mutation(returns => Platform)
