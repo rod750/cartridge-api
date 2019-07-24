@@ -26,6 +26,6 @@ export class TagResolver {
 
     @Mutation(returns => Number)
     async deleteTag(@Arg("id") id: number, @Ctx() context: Context<any>) {
-        return context.models.Tag.destroy({ where: { id: id } });
+        return context.models.Tag.destroy({ where: { id: id } }).then((result) => (id));
     }
 }

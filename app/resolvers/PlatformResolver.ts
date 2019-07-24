@@ -27,6 +27,6 @@ export class PlatformResolver {
 
     @Mutation(returns => Number)
     async deletePlatform(@Arg("id") id: number, @Ctx() context: Context<any>) {
-        return context.models.Platform.destroy({ where: { id: id } });
+        return context.models.Platform.destroy({ where: { id: id } }).then((result) => (id));
     }
 }

@@ -26,6 +26,6 @@ export class DeveloperResolver {
 
     @Mutation(returns => Number)
     async deleteDeveloper(@Arg("id") id: number, @Ctx() context: Context<any>) {
-        return context.models.Developer.destroy({ where: { id: id } });
+        return context.models.Developer.destroy({ where: { id: id } }).then((result) => (id));
     }
 }
