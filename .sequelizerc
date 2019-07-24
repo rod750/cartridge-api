@@ -1,7 +1,18 @@
 const path = require('path');
 
+const loadConfig = () => {
+    let configPath = path.resolve(__dirname, 'db', 'config.json')
+    if(fs.existsSync(configPath)) {
+        return configPath;
+    }
+    else {
+        // expected to be production
+        return path.resolve(__dirname, 'db', 'sample-config.json');
+    }
+}
+
 module.exports = {
-    'config': path.resolve(__dirname, 'db', 'config.json'),
+    'config': loadConfig(),
     'models-path': path.resolve(__dirname, 'dist', 'models'),
     'seeders-path': path.resolve(__dirname, 'db', 'seeds'),
     'migrations-path': path.resolve(__dirname, 'db', 'migrations')
