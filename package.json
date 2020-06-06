@@ -28,7 +28,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@types/graphql": "^14.2.2",
-    "apollo-server-fastify": "^2.7.0",
+    "apollo-server-fastify": "^2.14.2",
     "bcrypt": "^3.0.6",
     "csv-parse": "^4.4.3",
     "fastify": "^2.6.0",
