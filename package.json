@@ -43,7 +43,7 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.0.0",
     "sequelize-cli": "^5.5.0",
-    "type-graphql": "^0.17.4",
+    "type-graphql": "^0.17.6",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
