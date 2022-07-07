@@ -38,7 +38,7 @@
     "fastify-plugin": "^1.6.0",
     "fastify-sensible": "^2.1.1",
     "graphql": "^14.4.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "pg": "^7.11.0",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.0.0",
